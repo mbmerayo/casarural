@@ -1,12 +1,14 @@
 package casarural
 
+import casarural.auth.User
+
 class Reserva {
     Date fecha
     Date fechaInicio
     Date fechaFin
     Estado estado
 
-    static belongsTo = [cliente: Cliente]
+    static belongsTo = [user: User]
     static hasMany = [habitaciones: Habitacion]
 
     static constraints = {
