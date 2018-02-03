@@ -44,7 +44,7 @@ class MainMenuTagLib {
                                     mkp.yieldUnescaped(g.message(code: 'default.language.label', default: 'Language'))
                                     span(class: 'caret', '')
                                 }
-                                mkp.yieldUnescaped(bootstrap.localeSelector())
+                                mkp.yieldUnescaped(casarural.localeSelector())
                             }
                         }
                     }
