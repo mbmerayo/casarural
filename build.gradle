@@ -74,6 +74,7 @@ dependencies {
     compile "org.grails.plugins:spring-security-ui:3.1.1"
     compile "org.grails.plugins:mail:2.0.0"
     compile "com.siprell.plugins:bootstrap-framework:1.0.3"
+    compile "org.grails.plugins:command:2.0.1"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
