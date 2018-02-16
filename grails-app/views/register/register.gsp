@@ -9,14 +9,12 @@
     -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
 }
-
 .panel-login > .panel-heading {
     color: #00415d;
     background-color: #fff;
     border-color: #fff;
     text-align: center;
 }
-
 .panel-login > .panel-heading a {
     text-decoration: none;
     color: #666;
@@ -26,12 +24,10 @@
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-
 .panel-login > .panel-heading a.active {
     color: #029f5b;
     font-size: 18px;
 }
-
 .panel-login > .panel-heading hr {
     margin-top: 10px;
     margin-bottom: 0px;
@@ -43,7 +39,6 @@
     background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
     background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
 }
-
 .panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
     height: 45px;
     border: 1px solid #ddd;
@@ -52,7 +47,6 @@
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-
 .panel-login input:hover,
 .panel-login input:focus {
     outline: none;
@@ -61,7 +55,6 @@
     box-shadow: none;
     border-color: #ccc;
 }
-
 .btn-register {
     background-color: #1CB94E;
     outline: none;
@@ -73,7 +66,6 @@
     text-transform: uppercase;
     border-color: #1CB94A;
 }
-
 .btn-register:hover,
 .btn-register:focus {
     color: #fff;
@@ -82,10 +74,15 @@
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
+    <g:hasErrors bean="${user}">
+        <ul>
+            <g:eachError var="err" bean="${user}">
+                <li>${err}</li>
+            </g:eachError>
+        </ul>
+    </g:hasErrors>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
@@ -98,7 +95,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="registerForm" action="/register/register" method="post"
+                            <form id="registerForm" action="/register/registerUser?lang=es" method="post"
                                   role="form" style="display: block;">
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"

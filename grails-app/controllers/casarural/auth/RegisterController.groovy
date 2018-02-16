@@ -1,48 +1,51 @@
 package casarural.auth
 
-import grails.plugin.springsecurity.ui.RegistrationCode
+import javax.xml.bind.ValidationException
+
+import static org.springframework.http.HttpStatus.CREATED
+
+import casarural.auth.UserRole
+import casarural.auth.Role
 
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
-    def verifyRegistration() {
 
-        String token = params.t
+    UserService userService
 
-        RegistrationCode registrationCode = token ? RegistrationCode.findByToken(token) : null
-        if (!registrationCode) {
-            flash.error = message(code: 'spring.security.ui.register.badCode')
-            redirect uri: successHandlerDefaultTargetUrl
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def registerUser(){
+        def userRole = casarural.auth.Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save()
+        def user = new User(params)
+        /*try{
+            userService.save(user)
+        } catch (ValidationException e){
+            respond user.errors, view: 'register'
             return
         }
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
+                redirect user
+            }
+            '*' { respond user, [status: CREATED] }
+        }*/
+        if (user.validate()){
+            userService.save(user)
+            casarural.auth.UserRole.create user, userRole
 
-        def user = uiRegistrationCodeStrategy.finishRegistration(registrationCode)
-
-        /**
-         * Si no existe creamos el rol de usuario y salvamos el nuevo usuario con ese rol
-         */
-        def userRole
-        if(Role.countByAuthority('ROLE_USER')==0){
-            userRole = new Role(authority: 'ROLE_USER').save()
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
+                    redirect user
+                }
+                '*' { respond user, [status: CREATED] }
+            }
         }else{
-            userRole = Role.findByAuthority('ROLE_USER')
+            user.errors.allErrors.each {
+                println it
+            }
+            respond user.errors, view: 'register'
+            return user
         }
-        user.accountLocked = false
-        //Add flush:true
-        user.save(flush: true)
-
-        UserRole.create user, userRole
-
-        if (!user) {
-            flash.error = message(code: 'spring.security.ui.register.badCode')
-            redirect uri: successHandlerDefaultTargetUrl
-            return
-        }
-
-        if (user.hasErrors()) {
-            // expected to be handled already by ErrorsStrategy.handleValidationErrors
-            return
-        }
-
-        flash.message = message(code: 'spring.security.ui.register.complete')
-        redirect uri: registerPostRegisterUrl ?: successHandlerDefaultTargetUrl
     }
 }

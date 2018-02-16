@@ -3,7 +3,7 @@ package casarural.auth
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class UserController {
+class UserController extends grails.plugin.springsecurity.ui.UserController {
 
     UserService userService
 

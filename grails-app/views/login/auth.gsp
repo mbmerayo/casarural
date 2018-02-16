@@ -92,66 +92,20 @@
         text-decoration: underline;
         color: #666;
     }
-
-    .btn-register {
-        background-color: #1CB94E;
-        outline: none;
-        color: #fff;
-        font-size: 14px;
-        height: auto;
-        font-weight: normal;
-        padding: 14px 0;
-        text-transform: uppercase;
-        border-color: #1CB94A;
-    }
-
-    .btn-register:hover,
-    .btn-register:focus {
-        color: #fff;
-        background-color: #1CA347;
-        border-color: #1CA347;
-    }
     </style>
 </head>
 
 <body>
-%{--<g:javascript>
-    $(function () {
-
-        $('#login-form-link').click(function (e) {
-            $("#login-form").delay(100).fadeIn(100);
-            $("#register-form").fadeOut(100);
-            $('#register-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-        $('#register-form-link').click(function (e) {
-            $("#register-form").delay(100).fadeIn(100);
-            $("#login-form").fadeOut(100);
-            $('#login-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-
-    });
-</g:javascript>--}%
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
                 <div class="panel-heading">
                     <div class="row text-center">
-                        %{--<div class="col-xs-6">--}%
-                            <a href="#" class="active" id="login-form-link">Login</a>
-                        %{--</div>--}%
-
-                        %{--<div class="col-xs-6">
-                            <a href="#" id="register-form-link">Registro</a>
-                        </div>--}%
+                        <a href="#" class="active" id="login-form-link">Login</a>
                     </div>
                     <hr>
                 </div>
-
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -195,61 +149,13 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <a href="${createLink(controller: 'register', action: 'register')}" tabindex="5"
+                                                <a href="${createLink(controller: 'register', action: 'register', params: [lang:'es'])}" tabindex="5"
                                                    class="forgot-password">Registro</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-
-                            %{--<form id="register-form" action="/register/register" method="post"
-                                  role="form" style="display: none;">
-                                <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                                           placeholder="Username" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control"
-                                           placeholder="Email Address" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder="Password">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2"
-                                           class="form-control" placeholder="Confirm Password">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="dni" id="dni" tabindex="1" class="form-control"
-                                           placeholder="DNI" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control"
-                                           placeholder="Nombre" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="primerApellido" id="primerApellido" tabindex="1"
-                                           class="form-control" placeholder="Primer apellido" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit"
-                                                   tabindex="4" class="form-control btn btn-register"
-                                                   value="Register Now">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>--}%
                         </div>
                     </div>
                 </div>
@@ -257,105 +163,5 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-%{--<p/>
-<div class="login-inner">
-	<s2ui:form type='login' focus='username' class="form-signin">
-		<div class="sign-in">
-			<h2 class="form-signin-heading"><g:message code='spring.security.ui.login.signin'/></h2>
-			<table>
-				<tr>
-					<td><label for="username"><g:message code='spring.security.ui.login.username'/></label></td>
-					<td><input type="text" name="${securityConfig.apf.usernameParameter}" id="username" class='formLogin' size="20"/></td>
-				</tr>
-				<tr>
-					<td><label for="password"><g:message code='spring.security.ui.login.password'/></label></td>
-					<td><input type="password" name="${securityConfig.apf.passwordParameter}" id="password" class="formLogin" size="20"/></td>
-				</tr>
-				<tr>
-					<td colspan='2'>
-						<input type="checkbox" class="checkbox" name="${securityConfig.rememberMe.parameter}" id="remember_me" checked="checked"/>
-						<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> |
-						<span class="forgot-link">
-						<g:link controller='register' action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
-					</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan='2'>
-						<s2ui:linkButton elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>
-						<button type="button" class="btn btn-link">
-						<g:createLink id="register" controller="register">
-							Registrar como nuevo usuario
-						</g:createLink>
-					</button>
-						<s2ui:submitButton elementId='loginButton' messageCode='spring.security.ui.login.login'/>
-						<g:submitButton name="loginButton" value="Log In" class="btn btn-default"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</s2ui:form>
-</div>--}%
-
 </body>
 </html>
-
-%{--
-<html>
-<head>
-	<meta name='layout' content='main' />
-	<title>Acceso Casa Rural</title>
-	<style type='text/css' media='screen'>
-	label {
-		float: left;
-		width: 60px;
-		margin-left: 60px;
-		text-align: left;
-
-	}
-	</style>
-</head>
-
-<body>
-<div align="center">
-	<div class="ui-widget-header ui-corner-all" style="width: 300px">
-		<span>Introduzca usuario y contraseña</span>
-	</div>
-	<div class="ui-widget-content ui-corner-all"  style="width: 300px; vertical-align: bottom;">
-		<form action='${postUrl}' method='POST' id='loginForm'>
-			<br>
-			<label>Usuario</label>
-			<input type='text' class='text_' name='j_username' id='username' /><br><br/>
-
-			<label for='password'>Contraseña</label>
-			<input type='password' class='text_' name='j_password' id='password' /><br><br/>
-
-			<label for='remember_me'>Recordarme</label>
-			<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if> /><br>
-
-			<br>
-			<input type='submit' value='Entrar' />
-			<br><br>
-		</form>
-	</div>
-	<br><br><br><br>
-</div>
-<script type='text/javascript'>
-    <!--
-    (function(){
-        document.forms['loginForm'].elements['j_username'].focus();
-    })();
-    // -->
-</script>
-</body>
-</html>
---}%
-
