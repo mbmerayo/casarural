@@ -1,6 +1,7 @@
 <html>
 <head>
-    <meta name="layout" content="main"/>
+	%{--<meta name="layout" content="${layoutRegister}"/>--}%
+	<meta name="layout" content="main"/>
     <s2ui:title messageCode='spring.security.ui.register.title'/>
     <style type="text/css" media="screen">
 .panel-login {
@@ -75,14 +76,35 @@
 </style>
 </head>
 <body>
+%{--<s2ui:formContainer type='register' focus='username' width='800px'>
+	<s2ui:form beanName='registerCommand'>
+		<g:if test='${emailSent}'>
+		<br/>
+		<g:message code='spring.security.ui.register.sent'/>
+		</g:if>
+		<g:else>
+		<br/>
+		<table>
+			<tbody>
+			<s2ui:textFieldRow name='username' size='40' labelCodeDefault='Username'/>
+			<s2ui:textFieldRow name='email' size='40' labelCodeDefault='E-mail'/>
+			<s2ui:passwordFieldRow name='password' size='40' labelCodeDefault='Password'/>
+			<s2ui:passwordFieldRow name='password2' size='40' labelCodeDefault='Password (again)'/>
+			</tbody>
+		</table>
+		<s2ui:submitButton elementId='submit' messageCode='spring.security.ui.register.submit'/>
+		</g:else>
+	</s2ui:form>
+</s2ui:formContainer>--}%
+
 <div class="container">
-    <g:hasErrors bean="${user}">
+    %{--<g:hasErrors bean="${user}">
         <ul>
             <g:eachError var="err" bean="${user}">
                 <li>${err}</li>
             </g:eachError>
         </ul>
-    </g:hasErrors>
+    </g:hasErrors>--}%
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
@@ -95,41 +117,41 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="registerForm" action="/register/registerUser?lang=es" method="post"
+                            <form id="registerForm" action="/register/register" method="post"
                                   role="form" style="display: block;">
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                                           placeholder="Usuario" value="">
+                                           placeholder="Usuario" value="" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="email" name="email" id="email" tabindex="1" class="form-control"
-                                           placeholder="Email" value="">
+                                           placeholder="Email" value="" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder="Password">
+                                           class="form-control" placeholder="Password" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="password" name="password2" id="password2" tabindex="2"
-                                           class="form-control" placeholder="Confirma Password">
+                                           class="form-control" placeholder="Confirma Password" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="text" name="dni" id="dni" tabindex="1" class="form-control"
-                                           placeholder="DNI" value="">
+                                           placeholder="DNI" value="" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control"
-                                           placeholder="Nombre" value="">
+                                           placeholder="Nombre" value="" required>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="text" name="primerApellido" id="primerApellido" tabindex="1"
-                                           class="form-control" placeholder="Primer apellido" value="">
+                                           class="form-control" placeholder="Primer apellido" value="" required>
                                 </div>
 
                                 <div class="form-group">
@@ -149,5 +171,28 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="/assets/jquery.js?compile=false"></script>
+<script type="text/javascript" src="/assets/jquery/jquery-2.1.4.js?compile=false"></script>
+<script type="text/javascript" src="/assets/jquery-ui/jquery-ui-1.10.3.custom.js?compile=false"></script>
+<script type="text/javascript" src="/assets/jquery-ui.js?compile=false"></script>
+<script type="text/javascript" src="/assets/jquery/jquery.jgrowl.js?compile=false"></script>
+<script type="text/javascript" src="/assets/spring-security-ui-register.js?compile=false"></script>
+<script>
+    $(function() {
+        $("#submit").button();
+        $('#submit').bind('click', function() {
+            document.forms.registerForm.submit();
+        });
+    });
+
+    $(function() {
+        $('#formContainer').resizable();
+    });
+
+    $(function() {
+        $('#username').focus();
+    });
+</script>
 </body>
 </html>

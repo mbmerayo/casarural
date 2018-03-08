@@ -6,9 +6,11 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery-2.2.0.min
-//= require bootstrap
 //= require_tree .
 //= require_self
+//= require bootstrap-all
+//= require bootstrap/bootstrap-affix
+//= require exa-datatables-bootstrap4
 
 if (typeof jQuery !== 'undefined') {
     (function($) {
