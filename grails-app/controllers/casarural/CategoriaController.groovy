@@ -59,17 +59,21 @@ class CategoriaController {
         try {
             categoriaService.save(categoria)
         } catch (ValidationException e) {
-            respond categoria.errors, view:'edit'
+//            respond categoria.errors, view:'edit'
+            flash.error = 'No se ha podido actualizar la categoría.'
+            respond categoria.errors, view: 'show'
             return
         }
 
-        request.withFormat {
+        /*request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'categoria.label', default: 'Categoria'), categoria.id])
                 redirect categoria
             }
             '*'{ respond categoria, [status: OK] }
-        }
+        }*/
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'categoria.label', default: 'Categoria'), categoria.id])
+        respond categoria, view: 'show', id: params.id
     }
 
     def delete(Long id) {
