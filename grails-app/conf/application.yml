@@ -157,7 +157,7 @@ environments:
 
 grails:
     mail:
-        host: smtp.gmail.com
+        host: smtp.zoho.eu
         port: 465
         username: ruralhome@zoho.eu
         password: abc@123.
