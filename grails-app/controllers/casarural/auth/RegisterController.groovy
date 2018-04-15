@@ -44,7 +44,7 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
         }*/
         if (user.validate()){
             userService.save(user)
-            UserRole.create user, userRole
+            UserRole.create user, userRole, true
 
             request.withFormat {
                 form multipartForm {
@@ -88,7 +88,7 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
         //Add flush:true
         user.save(flush: true)
 
-        UserRole.create user, userRole
+        UserRole.create user, userRole, true
 
         if (!user) {
             flash.error = message(code: 'spring.security.ui.register.badCode')
