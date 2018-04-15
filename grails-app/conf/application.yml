@@ -159,8 +159,8 @@ grails:
     mail:
         host: smtp.gmail.com
         port: 465
-        username: mbmerayo@gmail.com
-        password: 1980@marcos
+        username: ruralhome@zoho.eu
+        password: abc@123.
         props:
             mail.smtp.auth: true
             mail.smtp.socketFactory.port: 465
