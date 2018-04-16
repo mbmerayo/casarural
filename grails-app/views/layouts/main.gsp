@@ -42,6 +42,11 @@
                 <li class="nav-item active">
                     <g:link class="nav-link" action="index">Inicio <span class="sr-only">(current)</span></g:link>
                 </li>
+                <sec:ifNotLoggedIn>
+                    <li class="nav-item">
+                        <g:link class="nav-link" controller='login'>Login</g:link>
+                    </li>
+                </sec:ifNotLoggedIn>
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
@@ -69,12 +74,17 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownReserva">
                             <sec:ifAnyGranted roles="ROLE_ADMIN">
-                                <a class="dropdown-item" href="${createLink(controller: 'habitacion', action: 'index')}">Mostrar reservas</a>
+                                <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'index')}">Mostrar reservas</a>
                             </sec:ifAnyGranted>
-                            <a class="dropdown-item" href="${createLink(controller: 'habitacion', action: 'create')}">Nueva reserva</a>
+                            <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'create')}">Nueva reserva</a>
                         </div>
                     </li>
                 </sec:ifLoggedIn>
+                <sec:ifNotGranted roles="ROLE_ADMIN,ROLE_USER">
+                    <li class="nav-item">
+                        <g:link class="nav-link" controller="register" action="register">Alta cliente </g:link>
+                    </li>
+                </sec:ifNotGranted>
                 <li class="nav-item dropdown show">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMas" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                         Más

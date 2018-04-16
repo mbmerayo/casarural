@@ -8,8 +8,10 @@ grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',                      access: ['IS_AUTHENTICATED_FULLY']],
 	[pattern: '/error',                 access: ['permitAll']],
-	[pattern: '/index',                 access: ['IS_AUTHENTICATED_FULLY']],
-	[pattern: '/index.gsp',             access: ['IS_AUTHENTICATED_FULLY']],
+	//[pattern: '/index',                 access: ['IS_AUTHENTICATED_FULLY']],
+	[pattern: '/index',                 access: ['permitAll']],
+	//[pattern: '/index.gsp',             access: ['IS_AUTHENTICATED_FULLY']],
+    [pattern: '/index.gsp',             access: ['permitAll']],
 	[pattern: '/shutdown',              access: ['permitAll']],
 	[pattern: '/assets/**',             access: ['permitAll']],
 	[pattern: '/**/js/**',              access: ['permitAll']],

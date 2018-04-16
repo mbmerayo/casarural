@@ -120,38 +120,59 @@
                             <form id="registerForm" action="/register/register" method="post"
                                   role="form" style="display: block;">
                                 <div class="form-group">
+                                    <label for="username">Usuario</label>
+                                    <div class="input-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"
                                            placeholder="Usuario" value="" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <div class="input-group">
                                     <input type="email" name="email" id="email" tabindex="1" class="form-control"
                                            placeholder="Email" value="" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <div class="input-group">
                                     <input type="password" name="password" id="password" tabindex="2"
                                            class="form-control" placeholder="Password" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="password2">Password</label>
+                                    <div class="input-group">
                                     <input type="password" name="password2" id="password2" tabindex="2"
                                            class="form-control" placeholder="Confirma Password" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="dni">DNI</label>
+                                    <div class="input-group">
                                     <input type="text" name="dni" id="dni" tabindex="1" class="form-control"
                                            placeholder="DNI" value="" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <div class="input-group">
                                     <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control"
                                            placeholder="Nombre" value="" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="primerApellido">Primer Apellido</label>
+                                    <div class="input-group">
                                     <input type="text" name="primerApellido" id="primerApellido" tabindex="1"
                                            class="form-control" placeholder="Primer apellido" value="" required>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
