@@ -2,7 +2,6 @@ package casarural
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
-import org.springframework.security.access.prepost.PreAuthorize
 
 import static org.springframework.http.HttpStatus.*
 
@@ -22,13 +21,35 @@ class ReservaController {
         respond reservaService.get(id)
     }
 
-    @PreAuthorize('isFullyAuthenticated')
+    @Secured("ROLE_USER")
     def create() {
         respond new Reserva(params)
     }
 
-    @PreAuthorize('isFullyAuthenticated')
+    /**
+     * Método que muestra las habitaciones disponibles por categoría entre dos fechas
+     * @param reserva
+     */
+    @Secured("ROLE_USER")
+    def showAvaliableRooms(Reserva reserva) {
+        render(template: "template/habitaciones", model: [categorias: Categoria.all])
+    }
+
+    @Secured("ROLE_USER")
     def save(Reserva reserva) {
+
+        //Validaciones
+        if (reserva.fechaInicio >= reserva.fechaFin){
+            respond flash.error = "La fecha de inicio debe de ser mayor que la fecha de fin", view: 'create'
+            return
+        }
+        if (reserva.fechaInicio < new Date()){
+            respond flash.error = "La fecha de inicio debe de ser mayor que la fecha actual", view: 'create'
+            return
+        }
+
+
+
         if (reserva == null) {
             notFound()
             return

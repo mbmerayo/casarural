@@ -2,226 +2,148 @@ package casarural
 
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
-import grails.validation.ValidationException
 import spock.lang.*
 
 class ReservaControllerSpec extends Specification implements ControllerUnitTest<ReservaController>, DomainUnitTest<Reserva> {
 
     def populateValidParams(params) {
         assert params != null
+        assert false, "TODO: Populate valid params"
+    }
 
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
-        assert false, "TODO: Provide a populateValidParams() implementation for this generated test suite"
+    def populateInvalidParams(params) {
+        assert params != null
+        assert false, "TODO: Populate invalid params"
     }
 
     void "Test the index action returns the correct model"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * list(_) >> []
-            1 * count() >> 0
-        }
 
         when:"The index action is executed"
-        controller.index()
+            controller.index().get()
 
         then:"The model is correct"
-        !model.reservaList
-        model.reservaCount == 0
+            !model.reservaList
+            model.reservaCount == 0
     }
 
     void "Test the create action returns the correct model"() {
         when:"The create action is executed"
-        controller.create()
+            controller.create()
 
         then:"The model is correctly created"
-        model.reserva!= null
+            model.reserva!= null
     }
 
-    void "Test the save action with a null instance"() {
-        when:"Save is called for a domain instance that doesn't exist"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'POST'
-        controller.save(null)
-
-        then:"A 404 error is returned"
-        response.redirectedUrl == '/reserva/index'
-        flash.message != null
-    }
-
-    void "Test the save action correctly persists"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * save(_ as Reserva)
-        }
-
-        when:"The save action is executed with a valid instance"
-        response.reset()
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'POST'
-        populateValidParams(params)
-        def reserva = new Reserva(params)
-        reserva.id = 1
-
-        controller.save(reserva)
-
-        then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/reserva/show/1'
-        controller.flash.message != null
-    }
-
-    void "Test the save action with an invalid instance"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * save(_ as Reserva) >> { Reserva reserva ->
-                throw new ValidationException("Invalid instance", reserva.errors)
-            }
-        }
+    void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'POST'
-        def reserva = new Reserva()
-        controller.save(reserva)
+            request.method = "POST"
+            def reserva= new Reserva()
+            reserva.validate()
+            controller.save(reserva).get()
 
         then:"The create view is rendered again with the correct model"
-        model.reserva != null
-        view == 'create'
-    }
-
-    void "Test the show action with a null id"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * get(null) >> null
-        }
-
-        when:"The show action is executed with a null domain"
-        controller.show(null)
-
-        then:"A 404 error is returned"
-        response.status == 404
-    }
-
-    void "Test the show action with a valid id"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * get(2) >> new Reserva()
-        }
-
-        when:"A domain instance is passed to the show action"
-        controller.show(2)
-
-        then:"A model is populated containing the domain instance"
-        model.reserva instanceof Reserva
-    }
-
-    void "Test the edit action with a null id"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * get(null) >> null
-        }
-
-        when:"The show action is executed with a null domain"
-        controller.edit(null)
-
-        then:"A 404 error is returned"
-        response.status == 404
-    }
-
-    void "Test the edit action with a valid id"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * get(2) >> new Reserva()
-        }
-
-        when:"A domain instance is passed to the show action"
-        controller.edit(2)
-
-        then:"A model is populated containing the domain instance"
-        model.reserva instanceof Reserva
-    }
-
-
-    void "Test the update action with a null instance"() {
-        when:"Save is called for a domain instance that doesn't exist"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'PUT'
-        controller.update(null)
-
-        then:"A 404 error is returned"
-        response.redirectedUrl == '/reserva/index'
-        flash.message != null
-    }
-
-    void "Test the update action correctly persists"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * save(_ as Reserva)
-        }
+            model.reserva!= null
+            view == 'create'
 
         when:"The save action is executed with a valid instance"
-        response.reset()
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'PUT'
-        populateValidParams(params)
-        def reserva = new Reserva(params)
-        reserva.id = 1
+            response.reset()
+            populateValidParams(params)
+            reserva= new Reserva(params)
 
-        controller.update(reserva)
+            controller.save(reserva).get()
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/reserva/show/1'
-        controller.flash.message != null
+            response.status == 201
+            Reserva.count() == 1
     }
 
-    void "Test the update action with an invalid instance"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * save(_ as Reserva) >> { Reserva reserva ->
-                throw new ValidationException("Invalid instance", reserva.errors)
-            }
-        }
+    void "Test that the show action returns the correct model"() {
+        when:"The show action is execu ted with a null domain"
+            controller.show(null).get()
 
-        when:"The save action is executed with an invalid instance"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'PUT'
-        controller.update(new Reserva())
+        then:"A 404 error is returned"
+            response.status == 404
 
-        then:"The edit view is rendered again with the correct model"
-        model.reserva != null
-        view == 'edit'
+        when:"A domain instance is passed to the show action"
+            populateValidParams(params)
+            def reserva= new Reserva(params).save(flush:true)
+
+            controller.show(reserva.id).get()
+
+        then:"A model is populated containing the domain instance"
+            model.reserva.id==reserva.id
     }
 
-    void "Test the delete action with a null instance"() {
+    void "Test that the edit action returns the correct model"() {
+        when:"The edit action is executed with a null domain"
+            controller.edit(null).get()
+
+        then:"A 404 error is returned"
+            response.status == 404
+
+        when:"A domain instance is passed to the edit action"
+            populateValidParams(params)
+            def reserva = new Reserva(params).save(flush:true)
+            controller.edit(reserva?.id).get()
+
+        then:"A model is populated containing the domain instance"
+            model.reserva.id==reserva.id
+    }
+
+    void "Test the update action performs an update on a valid domain instance"() {
+        when:"Update is called for a domain instance that doesn't exist"
+            request.method = "PUT"
+            controller.update(null).get()
+
+        then:"A 404 error is returned"
+            status == 404
+
+        when:"An invalid domain instance is passed to the update action"
+            response.reset()
+            populateValidParams(params)
+            def reserva= new Reserva(params).save(flush:true)
+            params.clear()
+            populateInvalidParams(params)
+            controller.update(reserva.id).get()
+
+        then:"The edit view is rendered again with the invalid instance"
+            view == 'edit'
+            model.reserva.id==reserva.id
+
+        when:"A valid domain instance is passed to the update action"
+            response.reset()
+            params.clear()
+            populateValidParams(params)
+            controller.update(reserva.id).get()
+
+        then:"A redirect is issued to the show action"
+            reserva != null
+            response.status == 200
+            !book.isDirty()
+    }
+
+    void "Test that the delete action deletes an instance if it exists"() {
         when:"The delete action is called for a null instance"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'DELETE'
-        controller.delete(null)
+            request.method = "DELETE"
+            controller.delete(null).get()
 
         then:"A 404 is returned"
-        response.redirectedUrl == '/reserva/index'
-        flash.message != null
-    }
+            status == 404
 
-    void "Test the delete action with an instance"() {
-        given:
-        controller.reservaService = Mock(ReservaService) {
-            1 * delete(2)
-        }
+        when:"A domain instance is created"
+            response.reset()
+            populateValidParams(params)
+            def reserva= new Reserva(params).save(flush: true)
+
+        then:"It exists"
+            Reserva.count() == 1
 
         when:"The domain instance is passed to the delete action"
-        request.contentType = FORM_CONTENT_TYPE
-        request.method = 'DELETE'
-        controller.delete(2)
+            controller.delete(reserva.id).get()
 
-        then:"The user is redirected to index"
-        response.redirectedUrl == '/reserva/index'
-        flash.message != null
+        then:"The instance is deleted"
+            Reserva.count() == 0
+            response.status == 204
     }
 }
-
-
-
-
-
-

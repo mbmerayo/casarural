@@ -23,16 +23,22 @@
 
     <title>Casa Rural</title>
 
+    <style>
+        html{
+            background: url('../assets/images/casarural/fondo.jpg')}) no-repeat fixed;
+        }
+    </style>
+
     <g:layoutHead/>
 </head>
 
 <body role="presentation">
 <div id="wrap">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <a class="navbar-brand" href="#">∫
         <asset:image src="casarural/logo.png" style="display: inline-block;" width="50px"
                      height="50px"/>
-    </a>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,6 +48,11 @@
                 <li class="nav-item active">
                     <g:link class="nav-link" action="index">Inicio <span class="sr-only">(current)</span></g:link>
                 </li>
+                <sec:ifNotLoggedIn>
+                    <li class="nav-item">
+                        <g:link class="nav-link" controller='login'>Login</g:link>
+                    </li>
+                </sec:ifNotLoggedIn>
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
@@ -69,12 +80,17 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownReserva">
                             <sec:ifAnyGranted roles="ROLE_ADMIN">
-                                <a class="dropdown-item" href="${createLink(controller: 'habitacion', action: 'index')}">Mostrar reservas</a>
+                                <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'index')}">Mostrar reservas</a>
                             </sec:ifAnyGranted>
-                            <a class="dropdown-item" href="${createLink(controller: 'habitacion', action: 'create')}">Nueva reserva</a>
+                            <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'create')}">Nueva reserva</a>
                         </div>
                     </li>
                 </sec:ifLoggedIn>
+                <sec:ifNotGranted roles="ROLE_ADMIN,ROLE_USER">
+                    <li class="nav-item">
+                        <g:link class="nav-link" controller="register" action="register">Alta cliente </g:link>
+                    </li>
+                </sec:ifNotGranted>
                 <li class="nav-item dropdown show">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMas" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
                         Más

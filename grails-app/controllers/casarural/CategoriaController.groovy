@@ -11,6 +11,14 @@ class CategoriaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    /**
+     * Método que devuelve las habitaciones que hay por categoría
+     * @return
+     */
+    def roomsPerCategory(){
+        render (template: 'template/habitaciones', model: [habitaciones: Categoria.findById(params.id).habitaciones])
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond categoriaService.list(params), model:[categoriaCount: categoriaService.count()]

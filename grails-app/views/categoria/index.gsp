@@ -55,23 +55,20 @@
                                         <tbody>
                                         <g:each in="${categoriaList}">
                                             <tr>
-                                                <td class="details-control"></td>
+                                                <td>
+                                                    <g:submitToRemote id="room${it.id}" url="[action: 'roomsPerCategory', id: it.id]"
+                                                                      update="rooms${it.id}" class="ui-icon ui-icon-search" value="Hab"/>
+                                                </td>
                                                 <td><a href="${createLink(action: 'show', id: it.id)}">${it.id}</a></td>
                                                 <td>${it.descripcion}</td>
                                                 <td>${it.precio}</td>
                                                 <td>${it.habitaciones.size()}</td>
                                             </tr>
-                                            <g:if test="${it.habitaciones.size()>0}">
-                                                <g:each in="${it.habitaciones}" var="hab">
-                                                <tr>
-                                                    <td></td>
-                                                    <td>Habitación ${hab.id}</td>
-                                                    <td>${hab.id}</td>
-                                                    <td>${hab.planta}</td>
-                                                    <td>${hab.descripcion}</td>
-                                                </tr>
-                                                </g:each>
-                                            </g:if>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div id="rooms${it.id}"></div>
+                                                </td>
+                                            </tr>
                                         </g:each>
                                         </tbody>
                                     </table>
@@ -104,25 +101,8 @@
                                                 }
                                             }
                                         });
-                                        // Add event listener for opening and closing details
-                                        $('#datos tbody').on('click', 'td.details-control', function () {
-                                            var tr = $(this).closest('tr');
-                                            var row = table.row( tr );
-
-                                            if ( row.child.isShown() ) {
-                                                // This row is already open - close it
-                                                row.child.hide();
-                                                tr.css('display','none');
-                                            }
-                                            else {
-                                                // Open this row
-                                                row.child.show();
-                                                tr.addClass('shown');
-                                                tr.css('display','block');
-                                            }
-                                        } );
                                     } );
-                                    </g:javascript>
+                                </g:javascript>
                             </div>
                         </div>
                     </div>

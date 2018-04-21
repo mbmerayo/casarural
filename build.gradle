@@ -6,12 +6,12 @@ buildscript {
             cssPath             : "grails-app/assets/stylesheets",
             jsPath              : "grails-app/assets/javascripts",
             useIndividualJs     : true,
-            useLess             : false,
+            useLess             : true,
             invalidVersionFails : true,
             fontAwesome : [
                install             : true,
                version             : "4.3.0",
-               useLess             : false,
+               useLess             : true,
                invalidVersionFails : true
             ]
         ]
@@ -77,7 +77,7 @@ dependencies {
     compile "org.grails.plugins:mail:2.0.0"
     compile "org.grails.plugins:command:2.0.1"
     compile "com.siprell.plugins:bootstrap-framework:1.0.3"
-    compile "fr.exanpe.grails:exa-datatables:2.0.1"
+    compile "org.grails.plugins:ajax-tags:1.0.0"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"

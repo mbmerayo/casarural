@@ -49,7 +49,8 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                    redirect user
+                    //redirect user
+                    redirect (controller: 'login', action: 'auth')
                 }
                 '*' { respond user, [status: CREATED] }
             }
