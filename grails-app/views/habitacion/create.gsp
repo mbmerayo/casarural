@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="card rounded-2">
-                        <div class="card-header text-center" style="background-color: #28a745;">
+                        <div class="card-header text-center" style="background-color: #b3c6ff;">
                             <h3 class="mb-0" style="color: white;">Alta Habitación</h3>
                         </div>
                         <div class="card-body">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-sm-8 col-9">
-                                        <g:submitButton name="create" id="create" value="Crear" class="btn btn-success btn-sm"/>
+                                        <g:submitButton name="create" id="create" value="Crear" class="btn btn-primary btn-sm"/>
                                     </div>
                                 </div>
                             </g:form>

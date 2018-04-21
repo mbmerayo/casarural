@@ -23,16 +23,22 @@
 
     <title>Casa Rural</title>
 
+    <style>
+        html{
+            background: url('../assets/images/casarural/fondo.jpg')}) no-repeat fixed;
+        }
+    </style>
+
     <g:layoutHead/>
 </head>
 
 <body role="presentation">
 <div id="wrap">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <a class="navbar-brand" href="#">∫
         <asset:image src="casarural/logo.png" style="display: inline-block;" width="50px"
                      height="50px"/>
-    </a>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

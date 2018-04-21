@@ -31,12 +31,12 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="card rounded" >
-                        <div class="card-header text-center" style="background-color: #28a745;">
+                        <div class="card-header text-center" style="background-color: #b3c6ff;">
                             <h3 class="mb-0" style="color: white;">Lista de habitaciones</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive-xl">
-                                <table class="table-condensed">
+                                <table id="datos" class="table-condensed">
                                     <thead>
                                     <tr class="table-primary">
                                         <th scope="col" class="text-center">Id</th>
@@ -62,12 +62,53 @@
                                     </div>
                                 </g:if>
                             </div>
-                            %{--<exa:datatable id="datos" items="${habitacionList}" exclude="id,belongsTo" class="table-responsive-xl table-condensed">
-                                <exa:customHeader name="categoria" value="Categoria" />
-                                <exa:customColumn name="categoria">
-                                    ${it.categoria.descripcion}
-                                </exa:customColumn>
-                            </exa:datatable>--}%
+                            <g:javascript>
+                                $(document).ready( function () {
+                                    $('#datos').DataTable({
+                                        language: {
+                                            "sProcessing":     "Procesando...",
+                                            "sLengthMenu":     "Mostrar _MENU_ registros",
+                                            "sZeroRecords":    "No se encontraron resultados",
+                                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                            "sInfoPostFix":    "",
+                                            "sSearch":         "Buscar:",
+                                            "sUrl":            "",
+                                            "sInfoThousands":  ",",
+                                            "sLoadingRecords": "Cargando...",
+                                            "oPaginate": {
+                                                "sFirst":    "Primero",
+                                                "sLast":     "Último",
+                                                "sNext":     "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            },
+                                            "oAria": {
+                                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                            }
+                                        }
+                                    });
+                                    // Add event listener for opening and closing details
+                                    $('#datos tbody').on('click', 'td.details-control', function () {
+                                        var tr = $(this).closest('tr');
+                                        var row = table.row( tr );
+
+                                        if ( row.child.isShown() ) {
+                                            // This row is already open - close it
+                                            row.child.hide();
+                                            tr.css('display','none');
+                                        }
+                                        else {
+                                            // Open this row
+                                            row.child.show();
+                                            tr.addClass('shown');
+                                            tr.css('display','block');
+                                        }
+                                    } );
+                                } );
+                            </g:javascript>
                         </div>
                     </div>
                 </div>
