@@ -93,6 +93,8 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-remote-driver:3.6.0"
     testRuntime "org.seleniumhq.selenium:selenium-api:3.6.0"
     compile "com.github.jsimone:webapp-runner:8.5.11.3"
+    runtime 'postgresql:postgresql:8.4-702.jdbc3'
+    provided "org.springframework.boot:spring-boot-starter-tomcat"
 }
 
 //heroku
