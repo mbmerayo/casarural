@@ -135,12 +135,9 @@ environments:
     production:
         dataSource:
             dbCreate: update
-            driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            uri: new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
-            url: "jdbc:postgresql://ec2-23-23-142-5.compute-1.amazonaws.com:5432/d1abk1f6q3e9is"
-            username: xwsymizkirecmx
-            password: f746feb035b9c43e30cc7ecd207baa9c82f6f219fd85c29db212d9594c3a5d65
+            url: jdbc:mysql://us-cdbr-iron-east-05.cleardb.net:3306/heroku_7a06930976059ae
+            username: b1986f399d00f7
+            password: bd6767df
 
 grails:
     mail:
