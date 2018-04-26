@@ -25,7 +25,7 @@
 
     <style>
         html{
-            background: url('../assets/images/casarural/fondo.jpg')}) no-repeat fixed;
+            background: url('../assets/images/casarural/fondo.jpg') no-repeat fixed;
         }
     </style>
 
