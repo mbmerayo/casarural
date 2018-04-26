@@ -138,9 +138,9 @@ environments:
             driverClassName: org.postgresql.Driver
             dialect: org.hibernate.dialect.PostgreSQLDialect
             uri: new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
-            url: "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
-            username: uri.userInfo.split(":")[0]
-            password: uri.userInfo.split(":")[1]
+            url: "jdbc:postgresql://ec2-23-23-142-5.compute-1.amazonaws.com:5432/d1abk1f6q3e9is"
+            username: xwsymizkirecmx
+            password: f746feb035b9c43e30cc7ecd207baa9c82f6f219fd85c29db212d9594c3a5d65
 
 grails:
     mail:
