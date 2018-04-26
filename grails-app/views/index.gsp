@@ -3,8 +3,6 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Inicio</title>
-    <link type="text / css " href= "styles.css" rel="stylesheet">
-    <link href="/stylesheets/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
