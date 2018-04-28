@@ -9,6 +9,7 @@ import static org.springframework.http.HttpStatus.*
 class ReservaController {
 
     ReservaService reservaService
+    HabitacionesService habitacionesService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -32,7 +33,8 @@ class ReservaController {
      */
     @Secured("ROLE_USER")
     def showAvaliableRooms(Reserva reserva) {
-        render(template: "template/habitaciones", model: [categorias: Categoria.all])
+        def habitaciones = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
+        render(template: "template/habitaciones", model: [habitaciones: habitaciones])
     }
 
     @Secured("ROLE_USER")
@@ -48,7 +50,8 @@ class ReservaController {
             return
         }
 
-
+        reserva.fecha = new Date()
+        reserva.estado = Reserva.Estado.Reservada
 
         if (reserva == null) {
             notFound()

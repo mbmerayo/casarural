@@ -23,11 +23,11 @@
 
     <title>Casa Rural</title>
 
-    <style>
+    %{--<style>
         html{
-            background: url('../assets/images/casarural/fondo.jpg') no-repeat fixed;
+            background-image: url("../../assets/images/casarural/fondo.jpg") no-repeat fixed;
         }
-    </style>
+    </style>--}%
 
     <g:layoutHead/>
 </head>

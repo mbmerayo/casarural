@@ -14,5 +14,4 @@ interface ReservaService {
     void delete(Serializable id)
 
     Reserva save(Reserva reserva)
-
 }

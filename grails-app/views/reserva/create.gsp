@@ -50,8 +50,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card rounded-2">
+                    %{--<div class="col-md-6 mx-auto">--}%
+                    <div class="col d-flex justify-content-center">
+                        <div class="card rounded-2 mx-auto">
                             <div class="card-header text-center" style="background-color: #28a745;">
                                 <h4 class="mb-0" style="color: white;">Alta Reserva</h4>
                             </div>
