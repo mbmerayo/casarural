@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/css/gijgo.min.css"/>--}%
         <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.es-ES.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.ca-ES.min.js.map"></script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"/>
 
     </head>
@@ -74,6 +75,11 @@
                                         <div class="input-group date">
                                             %{--<g:datePicker name="fechaInicio" id="fechaInicio" value="${reserva?.fechaInicio}"/>--}%
                                             <input id="fechaInicio"/>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -81,6 +87,11 @@
                                         <div class="input-group date">
                                             %{--<g:datePicker name="fechaFin" id="fechaFin" value="${reserva?.fechaFin}"/>--}%
                                             <input id="fechaFin"/>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -107,11 +118,11 @@
     </div>
     <g:javascript>
         $('#fechaInicio').datepicker({
-            locale: 'es-ES',
+            language: 'es-ES',
             format: 'dd/mm/yyyy'
         });
         $('#fechaFin').datepicker({
-            locale: 'es-ES',
+            language: 'es-ES',
             format: 'dd/mm/yyyy'
         });
     </g:javascript>
