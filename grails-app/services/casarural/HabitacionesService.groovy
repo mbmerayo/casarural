@@ -10,7 +10,7 @@ class HabitacionesService {
         def hayReservas = Reserva.list().empty
         //Si no hay reservas podemos alquilar cualquier habitacion
         if (Reserva.list().empty) {
-            return Habitacion.list()
+            return Categoria.list()
         } else {
             //Cargamos la lista con todas las habitaciones y eliminamos las no disponibles
             def habitaciones = Habitacion.list()

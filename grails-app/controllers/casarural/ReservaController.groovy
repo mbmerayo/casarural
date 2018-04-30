@@ -33,8 +33,17 @@ class ReservaController {
      */
     @Secured("ROLE_USER")
     def showAvaliableRooms(Reserva reserva) {
-        def habitaciones = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
-        render(template: "template/habitaciones", model: [habitaciones: habitaciones])
+        def categorias = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
+        render(template: "template/categorias", model: [categorias: categorias])
+    }
+
+    /**
+     * Método que muestra las habitaciones disponibles por cada categoría
+     */
+    @Secured("ROLE_USER")
+    def showHabitacionesPerCategoria(){
+        def categoria = Categoria.findById(params.id)
+        render(template: 'template/habitaciones', model: [habitaciones: categoria.habitaciones.asList()])
     }
 
     @Secured("ROLE_USER")
