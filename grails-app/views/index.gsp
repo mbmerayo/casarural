@@ -7,13 +7,13 @@
 
 <body>
 <sec:ifNotLoggedIn>
-    <h1>Framework para la gestión de hoteles</h1>
+    <h1>Framework de gestión hotelera</h1>
 </sec:ifNotLoggedIn>
 <sec:ifAnyGranted roles="ROLE_ADMIN">
-    <h1>Bienvenido <sec:username/></h1>
+    <g:render template="/template/administrador"/>
 </sec:ifAnyGranted>
 <sec:ifAnyGranted roles="ROLE_USER">
-    <h1>Bienvendio <sec:username/></h1>
+    <g:render template="/template/usuario"/>
 </sec:ifAnyGranted>
 </body>
 </html>

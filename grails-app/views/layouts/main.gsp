@@ -33,6 +33,7 @@
 </head>
 
 <body role="presentation">
+<header>
 <div id="wrap">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <a class="navbar-brand" href="#">∫
@@ -44,8 +45,8 @@
         </button>
 
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+            <ul class="navbar-nav mr-auto justify-content-center nav-pills">
+                <li class="nav-item ">
                     <g:link class="nav-link" action="index">Inicio <span class="sr-only">(current)</span></g:link>
                 </li>
                 <sec:ifNotLoggedIn>
@@ -55,7 +56,8 @@
                 </sec:ifNotLoggedIn>
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" role="button" style="background-color: transparent;">
                             Categorías
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownCategoria">
@@ -64,7 +66,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownHabitacion" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownHabitacion" href="#" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" role="button" style="background-color: transparent;">
                             Habitaciones
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownHabitacion">
@@ -75,7 +78,8 @@
                 </sec:ifAnyGranted>
                 <sec:ifLoggedIn>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownReserva" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownReserva" href="#" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" role="button" style="background-color: transparent;">
                             Reservas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownReserva">
@@ -92,7 +96,9 @@
                     </li>
                 </sec:ifNotGranted>
                 <li class="nav-item dropdown show">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMas" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMas"
+                       href="#" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" role="button" style="background-color: transparent;">
                         Más
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMas">
@@ -108,12 +114,12 @@
         </div>
     </nav>
 </div>
+</header>
 
-<div class="container-fluid" role="main">
+<main role="main">
     <g:layoutBody/>
     %{--<asset:javascript src="application"/>--}%
-</div>
-</div>
+</main>
 <!--Footer-->
 <footer class="card-footer fixed-bottom">
     <div class="container-fluid">
