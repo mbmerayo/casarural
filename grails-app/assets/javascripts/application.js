@@ -10,14 +10,13 @@
 //= require_self
 //= require bootstrap-all
 //= require bootstrap/bootstrap-affix
-//= require exa-datatables-bootstrap4
 
 if (typeof jQuery !== 'undefined') {
     (function($) {
-        $(document).ajaxStart(function() {
-            $('#spinner').fadeIn();
+        $('#spinner').ajaxStart(function() {
+            $(this).fadeIn();
         }).ajaxStop(function() {
-            $('#spinner').fadeOut();
+            $(this).fadeOut();
         });
     })(jQuery);
 }

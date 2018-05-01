@@ -7,13 +7,13 @@
 
 <body>
 <sec:ifNotLoggedIn>
-    <h1>¡Hola mundo!</h1>
+    <h1>Framework para la gestión de hoteles</h1>
 </sec:ifNotLoggedIn>
 <sec:ifAnyGranted roles="ROLE_ADMIN">
-    <h1>¡Eres administrador!</h1>
+    <h1>Bienvenido <sec:username/></h1>
 </sec:ifAnyGranted>
 <sec:ifAnyGranted roles="ROLE_USER">
-    <h1>¡Eres usuario!</h1>
+    <h1>Bienvendio <sec:username/></h1>
 </sec:ifAnyGranted>
 </body>
 </html>

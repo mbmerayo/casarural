@@ -3,6 +3,8 @@ package casarural
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 
+import java.text.SimpleDateFormat
+
 import static org.springframework.http.HttpStatus.*
 
 @Secured("ROLE_ADMIN")
@@ -48,6 +50,10 @@ class ReservaController {
 
     @Secured("ROLE_USER")
     def save(Reserva reserva) {
+        /*def fechaInicio = params.fechaInicio
+        def fechaFin = params.fechaFin*/
+        reserva.fechaInicio = params.date('fechaInicio')  //SimpleDateFormat.parse('dd/MM/yyyy', params.fechaInicio)
+        reserva.fechaFin = params.date('fechaFin') //SimpleDateFormat.parse('dd/MM/yyyy',params.fechaFin)
 
         //Validaciones
         if (reserva.fechaInicio >= reserva.fechaFin){

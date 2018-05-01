@@ -109,7 +109,7 @@
     </nav>
 </div>
 
-<div class="container theme" role="main">
+<div class="container-fluid" role="main">
     <g:layoutBody/>
     %{--<asset:javascript src="application"/>--}%
 </div>
