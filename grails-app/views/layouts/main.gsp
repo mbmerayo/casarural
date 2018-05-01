@@ -47,7 +47,7 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto justify-content-center nav-pills">
                 <li class="nav-item ">
-                    <g:link class="nav-link" action="index">Inicio <span class="sr-only">(current)</span></g:link>
+                    <g:link class="nav-link" controller="login" action="index">Inicio <span class="sr-only">(current)</span></g:link>
                 </li>
                 <sec:ifNotLoggedIn>
                     <li class="nav-item">
