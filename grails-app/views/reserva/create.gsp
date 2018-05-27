@@ -73,6 +73,7 @@
                                             %{--<input id="fechaInicio" name="fechaInicio"--}%
                                                    %{--value="${formatDate(format:'MM/dd/yyyy',date:reserva?.fechaInicio)}"/>--}%
                                             <g:textField name="fechaInicio" id="fechaInicio" value="${reserva?.fechaInicio}" class="form-control input-lg"/>
+                                            %{--<g:jqDatePicker name="fechaInicio" precision="day" value="${reserva?.fechaInicio}" required="" />--}%
                                             <div class="input-group-append">
                                                 <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>

@@ -24,7 +24,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     [pattern: '/role/**',               access: ['ROLE_ADMIN']],
     [pattern: '/securityInfo/**',       access: ['ROLE_ADMIN']],
     [pattern: '/registationCode/**',    access: ['ROLE_ADMIN']],
-    [pattern: '/register/**',           access: ['permitAll']]
+    [pattern: '/register/**',           access: ['permitAll']],
+	[pattern: '/api/login',          	access: ['permitAll']],
+	[pattern: '/api/logout',        	access: ['isFullyAuthenticated()']],
+//	[pattern: '/api/habitacion',    	access: ['isFullyAuthenticated()']],
+    [pattern: '/**',                    access: ['isFullyAuthenticated()']]
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
@@ -33,7 +37,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'JOINED_FILTERS']
+//	[pattern: '/**',             filters: 'JOINED_FILTERS']
+    [pattern: '/api/**',         filters:'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
+    [pattern: '/**',             filters:'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
 ]
 
 
@@ -41,4 +47,18 @@ grails.plugin.springsecurity.rememberMe.persistent = true
 grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'casarural.auth.PersistentLogin'
 grails.plugins.springsecurity.ui.register.postRegisterUrl= '/welcome'
 grails.plugins.springsecurity.ui.forgotPassword.postResetUrl = '/welcome'
+
+grails.plugin.springsecurity.rest.logout.endpointUrl = '/api/logout'
+grails.plugin.springsecurity.rest.token.validation.useBearerToken = false
+grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
+grails.plugin.springsecurity.rest.token.storage.memcached.hosts = 'localhost:11211'
+grails.plugin.springsecurity.rest.token.storage.memcached.username = ''
+grails.plugin.springsecurity.rest.token.storage.memcached.password = ''
+grails.plugin.springsecurity.rest.token.storage.memcached.expiration = 86400
+
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'casarural.auth.AuthenticationToken'
+
+grails.plugin.springsecurity.rest.token.generation.useSecureRandom = true
+grails.plugin.springsecurity.rest.token.generation.useUUID = false
 

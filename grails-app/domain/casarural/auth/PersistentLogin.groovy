@@ -4,6 +4,9 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
 
+import grails.rest.*
+
+@Resource(uri='/api/login')
 @GrailsCompileStatic
 @EqualsAndHashCode(includes=['series', 'username'])
 @ToString(includes=['series', 'username'], cache=true, includeNames=true, includePackage=false)

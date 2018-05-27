@@ -1,7 +1,9 @@
 package casarural
 
 import casarural.auth.User
+import grails.rest.*
 
+@Resource(uri = '/api/reserva', readOnly = false, formats = ['json','xml'])
 class Reserva {
     Date fecha
     Date fechaInicio

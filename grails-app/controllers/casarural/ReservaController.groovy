@@ -35,8 +35,15 @@ class ReservaController {
      */
     @Secured("ROLE_USER")
     def showAvaliableRooms(Reserva reserva) {
-        def categorias = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
-        render(template: "template/categorias", model: [categorias: categorias])
+//        def habitaciones = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
+        if((params.fechaInicio == "")||(params.fechaFin == "")){
+            def error = "Debe de introducir fecha de inicio y fecha de fin"
+            render (template:"template/mensaje", model: [error: error])
+        }else{
+           /* def fechaInicio =  Date.parse("yyyy-MM-dd", params.fechaInicio)
+            def fechaFin = Date.parse("yyyy-MM-dd", params.fechaFin)*/
+            render(template: "template/categorias", model: [categorias: Categoria.all, fechaInicio: params.fechaInicio, fechaFin: params.fechaFin])
+        }
     }
 
     /**

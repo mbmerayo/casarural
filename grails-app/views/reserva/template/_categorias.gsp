@@ -1,3 +1,4 @@
+<%@ page import="java.text.DateFormat" %>
 <div class="table-responsive-xl">
     <table id="datos" class="table-view table-striped thead-light" style="width: 100%">
         <thead>
@@ -9,7 +10,8 @@
         </tr>
         </thead>
         <tbody>
-        <g:each var="categoria" in="${categorias}">
+        <g:each var="categoria" in="${categorias}" status="i">
+            %{--<g:if test="${habitacion.categoria != habitacion.}"></g:if>--}%
             <tr>
                 <td>
                     %{--<g:submitToRemote name="open${categoria.id}" id="open${categoria.id}"--}%
@@ -25,11 +27,11 @@
                 <td colspan="4">
                     <div id="categoria${categoria.id}" style="display: none;">
                         <table>
-                            <g:each var="habitacion" in="${categoria.habitaciones}">
+                            <g:each var="hab" in="${categoria.habsDisponibles(categoria.id, fechaInicio, fechaFin)}">
                                 <tr>
-                                    <td><g:checkBox name="habitacion_${habitacion.id}"/></td>
-                                    <td>${habitacion.descripcion}</td>
-                                    <td>${habitacion.planta} planta</td>
+                                    <td><g:checkBox name="habitacion_${hab.id}"/></td>
+                                    <td>${hab.descripcion}</td>
+                                    <td>${hab.planta} planta</td>
                                 </tr>
                             </g:each>
                         </table>
