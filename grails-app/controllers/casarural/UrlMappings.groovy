@@ -13,8 +13,8 @@ class UrlMappings {
         "500"(view:'/error')
         "404"(view:'/notFound')
 
-        "/api/habitacion"(resources:"habitacion")
+        /*"/api/habitacion"(resources:"habitacion")
         "/api/categoria"(resources:"categoria")
-        "/api/reserva"(resources:"reserva")
+        "/api/reserva"(resources:"reserva")*/
     }
 }
