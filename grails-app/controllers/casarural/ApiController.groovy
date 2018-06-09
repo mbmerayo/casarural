@@ -8,9 +8,13 @@ class ApiController {
     def habitacionService
     def categoriaService
     def reservaService
+    def userService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def users() {
+        respond userService.list(params), formats: ['json']
+    }
     def habitaciones() {
         respond habitacionService.list(params), formats: ['json']
     }

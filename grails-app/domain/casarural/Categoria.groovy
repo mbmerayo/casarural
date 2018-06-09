@@ -1,8 +1,8 @@
 package casarural
 
-import grails.rest.*
+/*import grails.rest.*
 
-@Resource(uri = '/api/categoria', readOnly = false, formats = ['json','xml'])
+@Resource(uri = '/api/categoria', readOnly = false, formats = ['json','xml'])*/
 class Categoria {
     def habitacionesService
     String descripcion
