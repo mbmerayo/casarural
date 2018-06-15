@@ -15,6 +15,8 @@ class Reserva {
 
     static constraints = {
         fecha nullable: false, blank: false
+        fechaInicio nullable: false, blank: false
+        fechaFin nullable: false, blank: false
         estado nullable: false, blank: false
     }
 

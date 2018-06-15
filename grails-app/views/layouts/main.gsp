@@ -155,10 +155,9 @@
 </footer>
 <!--/.Footer-->
 
-<div id="spinner" class="spinner" style="display:none;">
+<div id="spinner" class="spinner" style="display: none;">
     %{--<g:message code="spinner.alt" default="Loading&hellip;"/>--}%
     <span class="fa fa-spinner" style="font-size:48px;"/>
 </div>
-
 </body>
 </html>

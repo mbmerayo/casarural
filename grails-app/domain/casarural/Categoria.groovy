@@ -1,10 +1,12 @@
 package casarural
 
+//import java.text.SimpleDateFormat
+
 /*import grails.rest.*
 
 @Resource(uri = '/api/categoria', readOnly = false, formats = ['json','xml'])*/
 class Categoria {
-    def habitacionesService
+//    def habitacionesService
     String descripcion
     Float precio
 
@@ -21,9 +23,13 @@ class Categoria {
         ]
     }
 
-    def habsDisponibles(Long id=null, String fechaInicio=null, String fechaFin=null){
+    /*def habsDisponibles(Long id=null, String fechaInicio=null, String fechaFin=null){
 
+        def fecInicio = (fechaInicio) ? new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicio) : null
+        def fecFin = (fechaFin) ? new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin) : null
 
-        return habitacionesService.habitacionesDisponibles(id, fechaInicio, fechaFin)
-    }
+        def habitacionesLibres = habitacionesService.libresCategoria(id, fecInicio, fecFin)
+
+        return habitacionesLibres
+    }*/
 }

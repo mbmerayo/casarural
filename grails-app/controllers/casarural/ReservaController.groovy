@@ -1,5 +1,6 @@
 package casarural
 
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 
@@ -12,6 +13,7 @@ class ReservaController {
 
     ReservaService reservaService
     HabitacionesService habitacionesService
+    SpringSecurityService springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -52,15 +54,18 @@ class ReservaController {
     @Secured("ROLE_USER")
     def showHabitacionesPerCategoria(){
         def categoria = Categoria.findById(params.id)
-        render(template: 'template/habitaciones', model: [habitaciones: categoria.habitaciones.asList()])
+        def fecInicio = (params.fechaInicio) ? new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaInicio) : null
+        def fecFin = (params.fechaFin) ? new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaFin) : null
+
+        def habitaciones = habitacionesService.libresCategoria(categoria.id, fecInicio, fecFin)
+        render(template: 'template/habitaciones', model: [habitaciones: habitaciones])
     }
 
     @Secured("ROLE_USER")
     def save(Reserva reserva) {
-        /*def fechaInicio = params.fechaInicio
-        def fechaFin = params.fechaFin*/
-        reserva.fechaInicio = params.date('fechaInicio')  //SimpleDateFormat.parse('dd/MM/yyyy', params.fechaInicio)
-        reserva.fechaFin = params.date('fechaFin') //SimpleDateFormat.parse('dd/MM/yyyy',params.fechaFin)
+
+        reserva.fechaInicio =  new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaInicio)
+        reserva.fechaFin =  new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaFin)
 
         //Validaciones
         if (reserva.fechaInicio >= reserva.fechaFin){
@@ -74,6 +79,20 @@ class ReservaController {
 
         reserva.fecha = new Date()
         reserva.estado = Reserva.Estado.Reservada
+
+        List<Habitacion> habitaciones = new ArrayList<Habitacion>()
+
+        params.each {name, value ->
+            if (value.equals("on")){
+                def id = name.drop(name.size() - 1)
+                habitaciones.add(Habitacion.findById(id))
+            }
+        }
+
+        reserva.habitaciones = habitaciones
+        reserva.user = springSecurityService.currentUser
+
+        reserva.clearErrors()
 
         if (reserva == null) {
             notFound()

@@ -4,14 +4,12 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'reserva.label', default: 'Reserva')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css"/>
+        %{--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css"/>
         <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.es.min.js"></script>
-        %{--<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.es-ES.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.ca-ES.min.js.map"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"/>--}%
-
+        <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.es.min.js"></script>--}%
+        <asset:stylesheet src="air-datepicker/datepicker.min.css"/>
+        <asset:javascript src="air-datepicker/datepicker.min.js"/>
+        <asset:javascript src="air-datepicker/i18n/datepicker.es.js"/>
     </head>
     <body>
         %{--<a href="#create-reserva" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -43,12 +41,20 @@
             </g:form>
         </div>--}%
     <div class="container-fluid py-5">
-        <g:if test="${flash.error}">
+        %{--<g:if test="${flash.error}">
             <div class="alert alert-danger fade alert-dismissible fade show" role="alert" style="display: block;">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 ${flash.error}
             </div>
-        </g:if>
+        </g:if>--}%
+        <g:hasErrors bean="${reserva}">
+            <div class="alert alert-danger fade alert-dismissible fade show" role="alert" style="display: block;">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <g:eachError bean="${reserva}">
+                    <p style="color: red;"><g:message error="${it}"/></p>
+                </g:eachError>
+            </div>
+        </g:hasErrors>
         <g:if test="${flash.message}">
             <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: block">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -72,7 +78,7 @@
                                             %{--<g:datePicker name="fechaInicio" id="fechaInicio" value="${reserva?.fechaInicio}"/>--}%
                                             %{--<input id="fechaInicio" name="fechaInicio"--}%
                                                    %{--value="${formatDate(format:'MM/dd/yyyy',date:reserva?.fechaInicio)}"/>--}%
-                                            <g:textField name="fechaInicio" id="fechaInicio" value="${reserva?.fechaInicio}" class="form-control input-lg"/>
+                                            <g:textField name="fechaInicio" id="fechaInicio" value="${reserva?.fechaInicio}" class="datepicker-here" data-language="es"/>
                                             %{--<g:jqDatePicker name="fechaInicio" precision="day" value="${reserva?.fechaInicio}" required="" />--}%
                                             <div class="input-group-append">
                                                 <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
@@ -85,7 +91,7 @@
                                         <label for="fechaFin">Fecha de fin</label>
                                         <div class="input-group date">
                                             %{--<g:datePicker name="fechaFin" id="fechaFin" value="${reserva?.fechaFin}"/>--}%
-                                            <g:textField name="fechaFin" id="fechaFin" value="${reserva?.fechaInicio}" class="form-control input-lg"/>
+                                            <g:textField name="fechaFin" id="fechaFin" value="${reserva?.fechaInicio}" class="datepicker-here" data-language="es"/>
                                             %{--<input id="fechaFin" name="fechaFin"--}%
                                                    %{--value="${formatDate(format:'MM/dd/yyyy',date:reserva?.fechaFin)}"/>--}%
                                             <div class="input-group-append">
@@ -119,14 +125,12 @@
     </div>
     <g:javascript>
         $('#fechaInicio').datepicker({
-            format: 'dd/mm/yyyy',
             language: 'es',
-            startDate: '0d'
+            startDate: new Date()
         });
         $('#fechaFin').datepicker({
-            format: 'dd/mm/yyyy',
             language: 'es',
-            startDate: '0d'
+            startDate: new Date()
         });
     </g:javascript>
     </body>

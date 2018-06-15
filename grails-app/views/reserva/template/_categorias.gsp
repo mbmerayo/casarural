@@ -14,10 +14,10 @@
             %{--<g:if test="${habitacion.categoria != habitacion.}"></g:if>--}%
             <tr>
                 <td>
-                    %{--<g:submitToRemote name="open${categoria.id}" id="open${categoria.id}"--}%
-                                      %{--value="+" url="[action: 'showHabitacionesPerCategoria', id: categoria.id]"--}%
-                                      %{--update="categoria${categoria.id}" class="btn btn-sm"/>--}%
-                    <a href="#0" id="boton${categoria.id}" class="btn btn-sm">+</a>
+                    <g:submitToRemote name="open${categoria.id}" id="open${categoria.id}"
+                                      value="+" url="[action: 'showHabitacionesPerCategoria', id: categoria.id]"
+                                      update="categoria${categoria.id}" class="btn btn-sm"/>
+                    %{--<a href="#0" id="boton${categoria.id}" class="btn btn-sm">+</a>--}%
                 </td>
                 <td>${categoria.descripcion}</td>
                 <td><g:formatNumber number="${categoria.precio}" type="currency" currencyCode="EUR"/></td>
@@ -25,27 +25,17 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <div id="categoria${categoria.id}" style="display: none;">
-                        <table>
-                            <g:each var="hab" in="${categoria.habsDisponibles(categoria.id, fechaInicio, fechaFin)}">
-                                <tr>
-                                    <td><g:checkBox name="habitacion_${hab.id}"/></td>
-                                    <td>${hab.descripcion}</td>
-                                    <td>${hab.planta} planta</td>
-                                </tr>
-                            </g:each>
-                        </table>
-                    </div>
+                    <div id="categoria${categoria.id}"/>
                 </td>
             </tr>
             <g:javascript>
                 $(document).ready(function(){
-                    $("#boton${categoria.id}").click(function(){
+                    $("#open${categoria.id}").click(function(){
                         $("#categoria${categoria.id}").slideToggle("slow");
-                        if ($("#boton${categoria.id}").text() == "+"){
-                            $("#boton${categoria.id}").html("-")
+                        if ($("#open${categoria.id}").val() == "+"){
+                            $("#open${categoria.id}").attr('value','-');
                         }else{
-                            $("#boton${categoria.id}").text("+");
+                            $("#open${categoria.id}").attr('value','+');
                         }
                     });
                 });
