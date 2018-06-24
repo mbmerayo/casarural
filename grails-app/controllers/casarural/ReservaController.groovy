@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 
 import static org.springframework.http.HttpStatus.*
 
-@Secured("ROLE_ADMIN")
+@Secured("ROLE_USER")
 class ReservaController {
 
     ReservaService reservaService
@@ -17,16 +17,17 @@ class ReservaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured("ROLE_ADMIN")
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond reservaService.list(params), model:[reservaCount: reservaService.count()]
     }
 
+    @Secured("ROLE_ADMIN")
     def show(Long id) {
         respond reservaService.get(id)
     }
 
-    @Secured("ROLE_USER")
     def create() {
         respond new Reserva(params)
     }
@@ -35,7 +36,6 @@ class ReservaController {
      * Método que muestra las habitaciones disponibles por categoría entre dos fechas
      * @param reserva
      */
-    @Secured("ROLE_USER")
     def showAvaliableRooms(Reserva reserva) {
 //        def habitaciones = habitacionesService.habitacionesDisponibles(reserva.fechaInicio, reserva.fechaFin)
         if((params.fechaInicio == "")||(params.fechaFin == "")){
@@ -51,14 +51,13 @@ class ReservaController {
     /**
      * Método que muestra las habitaciones disponibles por cada categoría
      */
-    @Secured("ROLE_USER")
     def showHabitacionesPerCategoria(){
         def categoria = Categoria.findById(params.id)
         def fecInicio = (params.fechaInicio) ? new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaInicio) : null
         def fecFin = (params.fechaFin) ? new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaFin) : null
 
         def habitaciones = habitacionesService.libresCategoria(categoria.id, fecInicio, fecFin)
-        render(template: 'template/habitaciones', model: [habitaciones: habitaciones])
+        render(template: 'template/haºbitaciones', model: [habitaciones: habitaciones])
     }
 
     @Secured("ROLE_USER")

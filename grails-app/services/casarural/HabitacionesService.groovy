@@ -31,20 +31,17 @@ class HabitacionesService {
             }
 
             def sql = "from Habitacion h where "
-            def cond = new HashMap()
+            def parameters = new HashMap()
 
             if(!habitacionesReservadas.isEmpty()){
                 sql += "h not in (:habitacionesReservadas) and "
-                cond.put("habitacionesReservadas",habitacionesReservadas)
+                parameters.put("habitacionesReservadas",habitacionesReservadas)
             }
 
             sql += " categoria.id = :id"
-            cond.put("id",id)
+            parameters.put("id",id)
 
-            def libres = Habitacion.findAll(sql,cond)
-
-            /*def libres = Habitacion.findAll("from Habitacion h where h not in (:habitacionesReservadas) " +
-                    "and categoria.id = :id", [habitacionesReservadas: habitacionesReservadas, id: id])*/
+            def libres = Habitacion.findAll(sql,parameters)
 
             return libres
         }
