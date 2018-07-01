@@ -31,14 +31,14 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="card rounded" >
-                        <div class="card-header text-center" style="background-color: #b3c6ff;">
+                        <div class="card-header text-center" style="background-color: #28a745;">
                             <h3 class="mb-0" style="color: white;">Lista de habitaciones</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive-xl">
                                 <table id="datos" class="table-condensed">
                                     <thead>
-                                    <tr class="table-primary">
+                                    <tr class="table-success">
                                         <th scope="col" class="text-center">Id</th>
                                         <th scope="col" class="text-center">Descripción</th>
                                         <th scope="col"class="text-center">Planta</th>
