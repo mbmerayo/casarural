@@ -28,7 +28,7 @@ class ReservaController {
         respond reservaService.list(params), model:[reservaCount: reservaService.count(), reservas: reservas, usuarioVacio: usuarioVacio]
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured(["ROLE_ADMIN","ROLE_USER"])
     def show(Long id) {
         respond reservaService.get(id)
     }
