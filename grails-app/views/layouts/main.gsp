@@ -83,9 +83,9 @@
                             Reservas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownReserva">
-                            <sec:ifAnyGranted roles="ROLE_ADMIN">
+                            %{--<sec:ifAnyGranted roles="ROLE_ADMIN">--}%
                                 <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'index')}">Mostrar reservas</a>
-                            </sec:ifAnyGranted>
+                            %{--</sec:ifAnyGranted>--}%
                             <a class="dropdown-item" href="${createLink(controller: 'reserva', action: 'create')}">Nueva reserva</a>
                         </div>
                     </li>

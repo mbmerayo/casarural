@@ -17,10 +17,15 @@ class ReservaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured("ROLE_ADMIN")
+    @Secured(["ROLE_ADMIN","ROLE_USER"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond reservaService.list(params), model:[reservaCount: reservaService.count()]
+        def reservas = Reserva.findAllByUser(springSecurityService.currentUser)
+        def usuarioVacio = false
+        if ((reservas.size() == 0)&&(springSecurityService.currentUser.username != 'admin')) {
+            usuarioVacio = true
+        }
+        respond reservaService.list(params), model:[reservaCount: reservaService.count(), reservas: reservas, usuarioVacio: usuarioVacio]
     }
 
     @Secured("ROLE_ADMIN")
@@ -57,7 +62,7 @@ class ReservaController {
         def fecFin = (params.fechaFin) ? new SimpleDateFormat("dd/MM/yyyy").parse(params.fechaFin) : null
 
         def habitaciones = habitacionesService.libresCategoria(categoria.id, fecInicio, fecFin)
-        render(template: 'template/haºbitaciones', model: [habitaciones: habitaciones])
+        render(template: 'template/habitaciones', model: [habitaciones: habitaciones])
     }
 
     @Secured("ROLE_USER")
@@ -140,6 +145,7 @@ class ReservaController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     def delete(Long id) {
         if (id == null) {
             notFound()

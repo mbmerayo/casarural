@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="card rounded">
-                        <div class="card-header text-center" style="background-color: #b3c6ff;">
+                        <div class="card-header text-center" style="background-color: #28a745;">
                             <h3 class="mb-0" style="color: white;">Lista de reservas</h3>
                         </div>
 
@@ -39,7 +39,7 @@
                             <div class="table-responsive-xl">
                                 <table id="datos" class="table-condensed">
                                     <thead>
-                                    <tr class="table-primary">
+                                    <tr class="table-success">
                                         <th scope="col" class="text-center">Id</th>
                                         <th scope="col" class="text-center">Fecha</th>
                                         <th scope="col" class="text-center">Fecha Inicio</th>
@@ -48,7 +48,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <g:each in="${reservaList}" var="reserva">
+                                    <g:if test="${reservas}">
+                                        <g:set var="listaReservas" value="${reservas}"/>
+                                    </g:if>
+                                    <g:else>
+                                        <g:set var="listaReservas" value="${reservaList}"/>
+                                    </g:else>
+                                    <g:each in="${listaReservas}" var="reserva">
+                                        <g:if test="${!usuarioVacio}">
                                         <tr>
                                             <td><a href="${createLink(action: 'show', id: reserva.id)}">${reserva.id}</a>
                                             </td>
@@ -57,6 +64,7 @@
                                             <td><g:formatDate format="dd/MM/yyyy" date="${reserva.fechaFin}"/></td>
                                             <td>${reserva.estado}</td>
                                         </tr>
+                                        </g:if>
                                     </g:each>
                                     </tbody>
                                 </table>

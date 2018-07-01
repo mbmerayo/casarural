@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <div id="categoria${categoria.id}"/>
+                    <div id="categoria${categoria.id}"></div>
                 </td>
             </tr>
             <g:javascript>
