@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="card rounded-2">
-                        <div class="card-header text-center" style="background-color: #b3c6ff;">
+                        <div class="card-header text-center" style="background-color: #28a745;">
                             <h3 class="mb-0" style="color: white;">Alta Habitación</h3>
                         </div>
                         <div class="card-body">
