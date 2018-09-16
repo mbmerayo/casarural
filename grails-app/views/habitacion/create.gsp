@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-sm-8 col-9">
-                                        <g:submitButton name="create" id="create" value="Crear" class="btn btn-primary btn-sm"/>
+                                        <g:submitButton name="create" id="create" value="Crear" class="btn btn-success btn-sm"/>
                                     </div>
                                 </div>
                             </g:form>

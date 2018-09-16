@@ -62,12 +62,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="offset-sm-7 col-9">
+                                <div class="offset-sm-6 col-9">
                                     <inpu
                                     <g:link class="edit" action="edit" resource="${this.habitacion}">
-                                        <input type="button" value="Editar" class="btn btn-success btn-lg"/>
+                                        <input type="button" value="Editar" class="btn btn-outline-success btn-sm"/>
                                     </g:link>
-                                    <g:submitButton name="delete" id="delete" value="Borrar" class="btn btn-danger btn-lg"/>
+                                    <g:submitButton name="delete" id="delete" value="Borrar" class="btn btn-outline-warning btn-sm"/>
+                                    <g:actionSubmit value="Cancelar" action="index" class="btn btn-outline-danger btn-sm"/>
                                 </div>
                             </div>
                         </g:form>

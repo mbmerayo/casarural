@@ -57,12 +57,12 @@
                                     <g:each in="${listaReservas}" var="reserva">
                                         <g:if test="${!usuarioVacio}">
                                         <tr>
-                                            <td><a href="${createLink(action: 'show', id: reserva.id)}">${reserva.id}</a>
+                                            <td class="text-center"><a href="${createLink(action: 'show', id: reserva.id)}">${reserva.id}</a>
                                             </td>
-                                            <td><g:formatDate format="dd/MM/yyyy" date="${reserva.fecha}"/></td>
-                                            <td><g:formatDate format="dd/MM/yyyy" date="${reserva.fechaInicio}"/></td>
-                                            <td><g:formatDate format="dd/MM/yyyy" date="${reserva.fechaFin}"/></td>
-                                            <td>${reserva.estado}</td>
+                                            <td class="text-center"><g:formatDate format="dd/MM/yyyy" date="${reserva.fecha}"/></td>
+                                            <td class="text-center"><g:formatDate format="dd/MM/yyyy" date="${reserva.fechaInicio}"/></td>
+                                            <td class="text-center"><g:formatDate format="dd/MM/yyyy" date="${reserva.fechaFin}"/></td>
+                                            <td class="text-center">${reserva.estado}</td>
                                         </tr>
                                         </g:if>
                                     </g:each>

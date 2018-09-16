@@ -45,24 +45,24 @@
                                     <table id="datos" class="uk-table uk-table-hover uk-table-striped" style="width: 100%">
                                         <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>Id</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
-                                            <th>Habitaciones</th>
+                                            <th scope="col" class="text-center"></th>
+                                            <th scope="col" class="text-center">Id</th>
+                                            <th scope="col" class="text-center">Descripción</th>
+                                            <th scope="col" class="text-center">Precio</th>
+                                            <th scope="col" class="text-center">Habitaciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <g:each in="${categoriaList}">
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     <g:submitToRemote id="room${it.id}" url="[action: 'roomsPerCategory', id: it.id]"
                                                                       update="rooms${it.id}" class="ui-icon ui-icon-search" value="Hab"/>
                                                 </td>
-                                                <td><a href="${createLink(action: 'show', id: it.id)}">${it.id}</a></td>
-                                                <td>${it.descripcion}</td>
-                                                <td>${it.precio}</td>
-                                                <td>${it.habitaciones.size()}</td>
+                                                <td class="text-center"><a href="${createLink(action: 'show', id: it.id)}">${it.id}</a></td>
+                                                <td class="text-center">${it.descripcion}</td>
+                                                <td class="text-center">${it.precio}</td>
+                                                <td class="text-center">${it.habitaciones.size()}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5">

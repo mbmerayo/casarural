@@ -48,10 +48,10 @@
                                     <tbody>
                                     <g:each in="${habitacionList}">
                                         <tr>
-                                            <td><a href="${createLink(action: 'show', id: it.id)}">${it.id}</a></td>
-                                            <td>${it.descripcion}</td>
-                                            <td>${it.planta}</td>
-                                            <td>${it.categoria.descripcion}</td>
+                                            <td class="text-center"><a href="${createLink(action: 'show', id: it.id)}">${it.id}</a></td>
+                                            <td class="text-center">${it.descripcion}</td>
+                                            <td class="text-center">${it.planta}</td>
+                                            <td class="text-center">${it.categoria.descripcion}</td>
                                         </tr>
                                     </g:each>
                                     </tbody>
