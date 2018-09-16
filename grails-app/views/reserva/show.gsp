@@ -103,7 +103,7 @@
 
                                 <div class="form-group">
                                     <label for="usuario" class="bmd-label-floating">Usuario</label>
-                                    <label>${reserva.user.username}</label>
+                                    <label>${reserva.user.nombre}</label>
                                     <label>${reserva.user.primerApellido}</label>
                                 </div>
 
