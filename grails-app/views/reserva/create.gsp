@@ -91,7 +91,7 @@
                                         <label for="fechaFin">Fecha de fin</label>
                                         <div class="input-group date">
                                             %{--<g:datePicker name="fechaFin" id="fechaFin" value="${reserva?.fechaFin}"/>--}%
-                                            <g:textField name="fechaFin" id="fechaFin" value="${reserva?.fechaInicio}" class="datepicker-here" data-language="es"/>
+                                            <g:textField name="fechaFin" id="fechaFin" value="${reserva?.fechaFin}" class="datepicker-here" data-language="es"/>
                                             %{--<input id="fechaFin" name="fechaFin"--}%
                                                    %{--value="${formatDate(format:'MM/dd/yyyy',date:reserva?.fechaFin)}"/>--}%
                                             <div class="input-group-append">
