@@ -115,8 +115,10 @@
                                 </div>
 
                                 <div class="offset-sm-6 col-9">
-                                    <g:actionSubmit value="Editar" action="update" onclick="update();"
-                                                    class="btn btn-outline-success btn-sm"/>
+                                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                                        <g:actionSubmit value="Editar" action="update" onclick="update();"
+                                                        class="btn btn-outline-success btn-sm"/>
+                                    </sec:ifAnyGranted>
                                     <g:actionSubmit value="Cancelar" action="index"
                                                     class="btn btn-outline-danger btn-sm"/>
                                 </div>
