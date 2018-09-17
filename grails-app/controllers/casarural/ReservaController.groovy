@@ -88,7 +88,8 @@ class ReservaController {
 
         params.each {name, value ->
             if (value.equals("on")){
-                def id = name.drop(name.size() - 1)
+//                def id = name.drop(name.size() - 1)
+                def id = name.substring((name.lastIndexOf("_") + 1))
                 habitaciones.add(Habitacion.findById(id))
             }
         }
